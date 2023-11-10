@@ -1,0 +1,347 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Intro to LaTeX and Template for Homework Assignments
+%% Quantitative Methods in Political Science
+%% University of Mannheim
+%% Fall 2017
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% created by Marcel Neunhoeffer & Sebastian Sternberg
+
+
+% This template and tutorial will help you to write up your homework. It will also help you to use Latex for other assignments than this course's homework.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Before we get started
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make an account on overleaf.com and get started. No need to install anything.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Or if you want it the nerdy way...
+% INSTALL LATEX: Before we can get started you need to install LaTeX on your computer.
+				% Windows: http://miktex.org/download
+				% Mac:         http://www.tug.org/mactex/mactex-download.html	
+				% There a many more different LaTeX editors out there for both operating systems. I use TeXworks because it looks the same on Windows and Mac.
+				
+
+% SAVE THE FILE: The first thing you need to do is to save your LaTeX file in a directory as a .tex file. You will not be able to do anything else unless your file is saved. I suggest to save the .tex file in the same folder with your .R script and where you will save your plots from R to. Let's call this file template_homework1.tex and save it in your Week 1 folder.
+
+
+% COMPILE THE FILE: After setting up your file, using your LaTeX editor (texmaker, texshop), you can compile your document using PDFLaTeX.
+	% Compiling your file tells LaTeX to take the code you have written and create a pdf file
+	% After compiling your file, in your directory will appear four new files, including a .pdf file. This is your output document.
+	% It is good to compile your file regularly so that you can see how your code is translating into your document.
+	
+	
+% ERRORS: If you get an error message, something is wrong in your code. Fix errors before they pile up!
+	% As with error messages in R, google the exact error message if you have a question!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Now again for everyone...
+
+% COMMANDS: 
+	% To do anything in LaTeX, you must use commands
+	% Commands tell LaTeX when to start your document, how you want your document to look, and how to format your document
+	% Commands ALWAYS begin with a backslash \
+
+% Everything following the % sign is a comment and will not be used by Latex to compile your document.
+% This is very similar to # comments in R.
+
+% Every .tex file usually consists of four parts.
+% 1. Document Class
+% 2. Packages
+% 3. Header
+% 4. Your Document
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. Document Class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ % The first command you will always have will declare your document class. This tells LaTeX what type of document you are creating (article, presentation, poster, etc). 
+% \documentclass is the command
+% in {} you specify the type of document
+% in [] you define additional parameters
+ 
+\documentclass[a4paper,12pt]{article} % This defines the style of your paper
+
+% We usually use the article type. The additional parameters are the format of the paper you want to print it on and the standard font size. For us this is a4paper and 12pt.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2. Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Packages are libraries of commands that LaTeX can call when compiling the document. With the specialized commands you can customize the formatting of your document.
+% If the packages we call are not installed yet, TeXworks will ask you to install the necessary packages while compiling.
+
+% First, we usually want to set the margins of our document. For this we use the package geometry. We call the package with the \usepackage command. The package goes in the {}, the parameters again go into the [].
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry} 
+
+% Unfortunately, LaTeX has a hard time interpreting German Umlaute. The following two lines and packages should help. If it doesn't work for you please let me know.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% The following two packages - multirow and booktabs - are needed to create nice looking tables.
+\usepackage{multirow} % Multirow is for tables with multiple rows within one cell.
+\usepackage{booktabs} % For even nicer tables.
+
+% As we usually want to include some plots (.pdf files) we need a package for that.
+\usepackage{graphicx} 
+
+% The default setting of LaTeX is to indent new paragraphs. This is useful for articles. But not really nice for homework problem sets. The following command sets the indent to 0.
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+% Package to place figures where you want them.
+\usepackage{float}
+
+% The fancyhdr package let's us create nice headers.
+\usepackage{fancyhdr}
+
+%The algpseudocode package allows us to write pseudocode algorithms nicely.
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3. Header (and Footer)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% To make our document nice we want a header and number the pages in the footer.
+
+\pagestyle{fancy} % With this command we can customize the header style.
+
+\fancyhf{} % This makes sure we do not have other information in our header or footer.
+
+\lhead{\footnotesize AA: Exercise Sheet 1}% \lhead puts text in the top left corner. \footnotesize sets our font to a smaller size.
+
+%\rhead works just like \lhead (you can also use \chead)
+\rhead{\footnotesize Kansal, Sah} %<---- Fill in your lastnames.
+
+% Similar commands work for the footer (\lfoot, \cfoot and \rfoot).
+% We want to put our page number in the center.
+\cfoot{\footnotesize \thepage} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4. Your document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Now, you need to tell LaTeX where your document starts. We do this with the \begin{document} command.
+% Like brackets every \begin{} command needs a corresponding \end{} command. We come back to this later.
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title section of the document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% For the title section we want to reproduce the title section of the Problem Set and add your names.
+
+\thispagestyle{empty} % This command disables the header on the first page. 
+
+\begin{tabular}{p{15.5cm}} % This is a simple tabular environment to align your text nicely 
+{\large \bf Advanced Algorithms} \\
+Freie Universitat Berlin \\ Winter 2023-24  \\ László Kozma \& Michaela Krüger\\
+\hline % \hline produces horizontal lines.
+\\
+\end{tabular} % Our tabular environment ends here.
+
+\vspace*{0.3cm} % Now we want to add some vertical space in between the line and our title.
+
+\begin{center} % Everything within the center environment is centered.
+	{\Large \bf Exercise Sheet 1} % <---- Don't forget to put in the right number
+	\vspace{2mm}
+	
+        % YOUR NAMES GO HERE
+	{\bf Jatin Kansal, Sandip Sah} % <---- Fill in your names here!
+		
+\end{center}  
+
+\vspace{0.4cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Up until this point you only have to make minor changes for every week (Number of the homework). Your write up essentially starts here.
+
+This homework answers the problem set sequentially. 
+
+\section*{Exercise 1} 
+\subsection*{Solution (a)}
+A general polynomial of degree $k$ can be written in the form of a sum. So, we will use $f(n) = \sum_{i = 0}^{k} a_in^i$ everywhere for this problem ($a_i$ are constants).
+\begin{enumerate}
+    \item For the relation $f(n) \in \theta(n^k)$ to hold, it is sufficient to show that $\lim_{n \to \infty}\frac{f(n)}{g(n)} = c$ holds, where c is some constant. Here $g(n) = bn^k$ is a function representing the family of functions in $\theta(n^k)$. We can calculate this ratio:
+    
+    $$ \lim_{n \to \infty} \frac{f(n)}{g(n)} = \lim_{n \to \infty} \frac{\sum_{i = 0}^{k} a_in^i}{bn^k} = \lim_{n \to \infty} \frac{n^k\sum_{i = 0}^{k} a_in^{k-i}}{bn^k} = c$$
+    
+    Since the extended relation holds, this implies $f(n) \in \theta(n^k)$
+
+    \item For the relation $f(n) \in o(n^l); l>k$ to hold, it is sufficient to show that $\lim_{n \to \infty}\frac{f(n)}{g(n)} = 0$ holds. Here $g(n) = bn^l$ is a function representing the family of functions in $o(n^l)$. We can calculate this ratio:
+    
+    $$ \lim_{n \to \infty} \frac{f(n)}{g(n)} = \lim_{n \to \infty} \frac{\sum_{i = 0}^{k} a_in^i}{bn^l} = \lim_{n \to \infty} \frac{\sum_{i = 0}^{k} a_in^{k-i}}{bn^{l-k}} = 0$$
+    
+    Since the extended relation holds, this implies $f(n) \in o(n^l)$
+    
+    \item For the relation $f(n) \in \omega(n^l); l<k$ to hold, it is sufficient to show that $\lim_{n \to \infty}\frac{f(n)}{g(n)} = \infty$ holds. Here $g(n) = bn^l$ is a function representing the family of functions in $\omega(n^l)$. We can calculate this ratio:
+    
+    $$ \lim_{n \to \infty} \frac{f(n)}{g(n)} = \lim_{n \to \infty} \frac{\sum_{i = 0}^{k} a_in^i}{bn^l} = \lim_{n \to \infty} b^{-1}n^{k-l}\sum_{i = 0}^{k} a_in^{k-i} = \infty$$
+    
+    Since the extended relation holds, this implies $f(n) \in \omega(n^l)$
+
+\end{enumerate}
+
+
+\subsection*{Solution (b)}
+Consider the following piece-wise function 
+\[  f(n) =  \left\{
+\begin{array}{ll}
+      n^5 &\textbf{if n is odd}\\
+      n^3 &\textbf{if n is even}
+\end{array} 
+\right. \]
+Also consider $o(n^4)$. In this case $f(n) \notin o(n^4)$ as for odd values of $n$ when $n$ is sufficiently large, $f(n) > cn^4$ irrespective of the constant chosen. But, at the same time, $f(n) \notin \Omega(n^4)$ as for even values of $n$ when $n$ is sufficiently large, $f(n) < cn^4$ irrespective of the constant chosen. From this example, it is clear that $f(n) \notin o(g)$ does not imply $f(n) \in \Omega(g)$. The simple reason for this is that numbers cannot be discontinuous but functions can be.
+
+
+
+\subsection*{Solution (c)}
+\begin{minipage}{\textwidth}
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Function & Asymptotic function & Explanation \\
+        \hline
+        $n^{(1-\epsilon)}$ & $O(n^{(1-\epsilon)})$ & Since $\epsilon$ cannot be smaller than 0 or larger than 1,\\
+                           &                       & $n^{(1-\epsilon)}$ is a decaying function as the power is less \\
+                           &&than 1.\\
+        \hline
+        $3^{\sqrt{\log n}}$ & $O(n^{c}); c < 1$  & $3^{\sqrt{\log n}} = \frac{3^{\log n}}{3^{\sqrt{\log n}}} = \frac{n^k}{3^{\sqrt{\log n}}} < O(n^c); k<1$ \\
+        && The above expression implies the function $3^{\sqrt{\log n}}$\\
+        &&is a decay function but the power is hard to \\
+        &&determine.\\
+        \hline
+        $\frac{n}{\log(\log n)}$ & $\theta(\frac{n}{\log(\log n)})$  & We can't simplify this any further but given\\
+        & or $O(n^c); c<1$& that for sufficiently large n, the denominator is\\
+        &&greater than 1, this function is smaller than\\
+        &&O(n) functions.\\
+        \hline
+        $\epsilon n$ & $\theta(n)$  & Self evident, ignore constant \\
+        \hline
+        $n^\frac{3}{2}\log n$ & $\theta(n^\frac{3}{2}\log n)$  & This function definitely grows faster than $O(n)$\\
+        &&as there is another multiplication factor alongside\\
+        &&it. But, comparing this to $n^{8/5}$, we get that\\
+        &&the growth rate of $\log(n)$ must equal growth\\
+        &&rate of $n^{1/10}$ for those two functions to\\
+        &&have the same asymptotic. But $\log(n)$ grows\\
+        &&lower than $n^{1/10}$. That's why we placed\\
+        &&$n^\frac{3}{2}\log n$ before $n^\frac{8}{5}$.\\
+        \hline
+        $n^\frac{8}{5}$ & $\theta(n^\frac{8}{5})$  & Same reasoning as above, but additionally,\\
+        &&$n^{8/5}$ is clearly below $n^2$.\\
+        \hline
+        $n^2$ & $\theta(n^2)$  & The power of n stays constant whereas in the\\
+        &&later functions, the power keeps increasing,\\
+        &&no matter how slowly. For a large enough n,\\
+        &&they will overtake $n^2$.\\
+        \hline
+        $n^{\log(\log n)}$, $(\log n)^{\log n}$ & $\theta(n^{\log(\log n)})$  & These two functions are mathematically equivalent\\
+        &&that's why we put them together. Additionally,\\
+        &&$\log(\log(n))$ will always be smaller than $0.5 \log(n)$\\
+        &&for sufficiently large n. Thus, the functions\\
+        &&in this row will have a lower asymptotic bound\\
+        &&than $n^{0.5\log(n)}$\\
+        \hline
+        $n^{\frac{1}{2}\log n}$ & $\theta(n^{\frac{1}{2}\log n})$  & Even though both $n^{\frac{1}{2}\log n}$ and $n^{\sqrt{n}}$\\
+        &&are exponential functions, the power $\frac{1}{2}\log n$\\
+        &&will always grow slower than $\sqrt{n}$. As $n$ grows\\
+        &&sufficiently large, the $n^{\sqrt{n}}$ will take over.\\
+        \hline
+        $n^{\sqrt{n}}$ & $\theta(n^{\sqrt{n}})$  & Same reason as above. As n grows sufficiently\\
+        &&large, $(1+\epsilon)^n$ will take over irrespective of the\\
+        &&fact that the base of $n^{\sqrt{n}}$ also grows in value.\\
+        \hline
+        $(1+\epsilon)^n$ & $\theta((1+\epsilon)^n)$  & See reasons above. \\
+        \hline
+        \hline
+    \end{tabular}
+    
+    \label{tab:inside_minipage}
+\end{minipage}
+
+\section*{Exercise 2}
+Probability of success on each experiment $= \frac{1}{\ln n}$\\
+Probability of failure on each experiment $= 1 - \frac{1}{\ln n}$\\
+\\
+Let's imagine doing two successive independent experiments.\\
+Total probability of success $= \frac{1}{ln n} + \bigg(1 - \frac{1}{ln n}\bigg)\frac{1}{\ln n}$\\
+Total probability of failure $= \bigg(1 - \frac{1}{\ln n}\bigg)^2$\\
+This means, we could also write the total probability of success as $1 - \bigg(1 - \frac{1}{\ln n}\bigg)^2$\\
+Similarly, for $k$ successive independent experiments, our total probability of success can be written as $1 - \bigg(1 - \frac{1}{\ln n}\bigg)^k$\\
+We want this probability to be at least $1 - \frac{1}{n^2}$, i.e., we want to find the value of $k$ that satisfies the following inequality:
+\[1 - \frac{1}{n^2} \leq 1 - \bigg(1 - \frac{1}{\ln n}\bigg)^k\]
+So, lets solve this inequality. First, let's remove the constants and flip the signs:
+\[\bigg(1 - \frac{1}{\ln n}\bigg)^k \leq \frac{1}{n^2}\]
+Next, we use the binomial expansion of the left hand side to write the inequality $1 - \frac{k}{\ln n} \leq \bigg(1 - \frac{1}{\ln n}\bigg)^k$. We can only write this because $\frac{1}{ln n} \leq 1$. We use this inequality in the above inequality.
+\[1 - \frac{k}{\ln n} \leq \frac{1}{n^2}\]
+We can further simplify this to write:
+\[k \geq \ln n\bigg(1 - \frac{1}{n^2}\bigg)\]
+This is the best we could do to simplify the required value of k.
+
+\section*{Exercise 3}
+\subsection*{(a)}
+    Consider the following algorithm:
+        \begin{algorithmic}
+            \State $i \gets 2$
+            \State $A_1 \gets A$
+            \While{$i \leq \lceil \frac{N}{2} \rceil$}:
+                \State $A_i \gets A_{i/2}^2$
+                \State $i \gets 2i$
+            \EndWhile
+            \State $A^N \gets \Pi_{i}A_i^{x_{\log(i)}}$
+        \end{algorithmic}
+    Here, the $x_{\log(i)}$ is either 1 or 0 and denotes the ${\log(i)}$th bit in the binary representation of N. What we are doing here constructing a binary basis using powers of A. We only need $\log(N)$ terms in this basis to then combine them to form $A^N$ in a way that no term is needed more than once. For such an algorithm, it only requires $\log(N) + 2$ elementary steps because we can access the binary representation of N in our model without any additional computation. Hence, we can compute $A^N$ in $O(\log(N))$ time.
+
+\subsection*{(c)}
+We assume the result of part (b) that we can compute the binomial factor $\binom{N}{K}$ in $O(\log N)$ time. Assume the function to do this process be called ComputeBinom(N, K). Then, consider the following algorithm:
+\begin{algorithmic}
+    \Function{ComputeFactorial}{N}
+        \State $N_{1/2} \gets \frac{N}{2}$
+        \State $N_K \gets ComputeBinom(N, N_{1/2})$
+        \State $N_{1/2, fac} \gets ComputeFactorial(N_{1/2})$
+        \State $N_{fac} \gets N_K \times N_{1/2, fac}^2$
+        \State \Return $N_{fac}$
+    \EndFunction
+\end{algorithmic}
+The recurrence function for the above algorithm can be written as:
+\[T(N) = 2T(N/2) + O(\log N)\]
+To solve this recurrence, let's think of constructing a binary tree. At each level of the tree, we incur the cost $O(\log N)$ (in reality this is a very loose bound, but sufficient for us). The tree will have $\log N$ levels because we split the problem in half at each level. So, the total run time complexity is $\log N \times O(\log N) = O(\log^2 N)$ 
+
+\subsection*{(d)}
+If N is a prime number, then the only factors it has are N and 1. This means that none of the numbers from 2 to N-1 can divide N. Conversely, if we multiply all the numbers from 2 to N-1, then N cannot divide the resulting number. We just showed in part (c) that we can compute $N!$ for any given N in $O(\log^2 N)$ time. So, we can also compute $(N-1)!$ in $O(\log^2 N)$ time. Lastly, we divide $(N-1)!$ by N. If we get a whole number, then we conclude N is not prime but otherwise it is prime. And since division is an elementary process, our total running time is still denoted by $O(\log^2 N)$.
+
+\subsection*{(e)}
+For any number K, if N divides $K!$, then all the prime factors of N can be found in $K!$ but if doesn't divide $K!$, then not all factors can be found in $K!$. So, consider the following algorithm:
+\begin{algorithmic}
+    \Function{ComputeFactors}{N}
+        \State $i \gets \frac{N}{2}$
+        \While{1}
+            \State $i_{fac} \gets ComputeFactorial(i)$
+            \If{$N \mathrel{|} i_{fac}$}
+                \State $i \gets i/2$
+            \Else
+                \State $div \gets ComputeFactorial(2i)/i_{fac}$
+                \State $factor \gets GCD(div, N)$
+                \State break
+            \EndIf
+        \EndWhile
+        \State \Return $factor$
+    \EndFunction
+\end{algorithmic}
+For this algorithm, each loop requires $O(\log^2 N)$ running time in the worst case scenario. Moreover, the algorithm would only loop through at most $\log N$ times in the worst case scenario. Hence, the total runtime for such an algorithm is $\log N \times O(\log^2 N) = O(\log^3 N)$.
+
+
+\end{document}
